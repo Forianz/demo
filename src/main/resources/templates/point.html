@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${nextround}"></h1>
+<div><span>Your team got </span> <span th:text="${point}"></span> <span> points this round </span>
+</div>
+<div>+1 point for the team who got the last card out of time</div>
+<form action="/tmax" method="get">
+    <button type="submit">My team</button>
+</form>
+<form th:if="${last != true}" action="/tother" method="get">
+    <button type="submit">Other team</button>
+</form>
+</body>
+</html>

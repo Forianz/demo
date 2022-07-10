@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Title</title>
+</head>
+<body>
+<h1 th:text="${team}"></h1>
+<h1 th:text="${message}"></h1>
+<form action="/game" method="get">
+  <button type="submit">skip</button>
+</form>
+<form action="/done" method="get">
+  <input type="text" th:value="${message}" hidden name="value">
+  <button type="submit">done</button>
+</form>
+<form action="/fin" method="get">
+  <input type="text" th:value="${message}" hidden name="value">
+  <button type="submit">Show points</button>
+</form>
+<h1 id="demo"></h1>
+
+<script th:inline="javascript">
+// Set the date we're counting down to
+var countDownDate = new Date(/*[[${time}]]*/).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+</body>
+</html>
