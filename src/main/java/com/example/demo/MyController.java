@@ -43,6 +43,8 @@ public class MyController {
         return "game";
     }
 
+
+
     @GetMapping("/done")
     public String nextCard(Model model, String value) {
         removed.add(value);
